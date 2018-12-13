@@ -1,0 +1,217 @@
+db:
+   url: jdbc:oracle:thin:@10.0.30.250:1521/daugia
+   user: daugia
+   password: Sa123456
+   dialect: org.hibernate.dialect.Oracle8iDialect
+   driverClass: oracle.jdbc.driver.OracleDriver
+   
+#cas.authn.accept.users=casuser::Mellon
+cas.authn.accept.users:
+cas.authn.accept.name:
+
+#Authentication Throttling
+# cas.authn.throttle.usernameParameter=username
+# cas.authn.throttle.startDelay=10000
+# cas.authn.throttle.repeatInterval=20000
+# cas.authn.throttle.appcode=CAS
+
+# cas.authn.throttle.failure.threshold=100
+# cas.authn.throttle.failure.code=AUTHENTICATION_FAILED
+# cas.authn.throttle.failure.rangeSeconds=60
+
+#Authentication Throttling database
+# cas.authn.throttle.jdbc.auditQuery=SELECT AUD_DATE FROM COM_AUDIT_TRAIL WHERE AUD_CLIENT_IP = ? AND AUD_USER = ? AND AUD_ACTION = ? AND APPLIC_CD = ? AND AUD_DATE >= ? ORDER BY AUD_DATE DESC
+# cas.authn.throttle.jdbc.healthQuery=SELECT 1 FROM INFORMATION_SCHEMA.SYSTEM_USERS
+# cas.authn.throttle.jdbc.isolateInternalQueries=false
+# cas.authn.throttle.jdbc.url=jdbc:hsqldb:mem:cas-hsql-database
+# cas.authn.throttle.jdbc.failFast=true
+# cas.authn.throttle.jdbc.isolationLevelName=ISOLATION_READ_COMMITTED
+# cas.authn.throttle.jdbc.dialect=org.hibernate.dialect.HSQLDialect
+# cas.authn.throttle.jdbc.leakThreshold=10
+# cas.authn.throttle.jdbc.propagationBehaviorName=PROPAGATION_REQUIRED
+# cas.authn.throttle.jdbc.batchSize=1
+# cas.authn.throttle.jdbc.user=sa
+# cas.authn.throttle.jdbc.ddlAuto=create-drop
+# cas.authn.throttle.jdbc.maxAgeDays=180
+# cas.authn.throttle.jdbc.password=
+# cas.authn.throttle.jdbc.autocommit=false
+# cas.authn.throttle.jdbc.driverClass=org.hsqldb.jdbcDriver
+# cas.authn.throttle.jdbc.idleTimeout=5000
+
+# cas.authn.throttle.jdbc.pool.suspension=false
+# cas.authn.throttle.jdbc.pool.minSize=6
+# cas.authn.throttle.jdbc.pool.maxSize=18
+# cas.authn.throttle.jdbc.pool.maxWait=2000
+
+
+#Authentication attributes
+cas.authn.attributeRepository.expireInMinutes: 30
+cas.authn.attributeRepository.maximumCacheSize: 10000
+cas.authn.attributeRepository.merger: REPLACE|ADD|MERGE
+
+# Attributes that you wish to resolve for the principal
+cas.authn.attributeRepository.jdbc.singleRow: true
+cas.authn.attributeRepository.jdbc.requireAllAttributes: true
+cas.authn.attributeRepository.jdbc.caseCanonicalization: NONE|LOWER|UPPER
+cas.authn.attributeRepository.jdbc.queryType: OR|AND
+
+# Used only when there is a mapping of many rows to one user
+# cas.authn.attributeRepository.jdbc.columnMappings.columnAttrName1=columnAttrValue1
+# cas.authn.attributeRepository.jdbc.columnMappings.columnAttrName2=columnAttrValue2
+# cas.authn.attributeRepository.jdbc.columnMappings.columnAttrName3=columnAttrValue3
+
+cas.authn.attributeRepository.jdbc.sql: SELECT * FROM USER WHERE {0}
+cas.authn.attributeRepository.jdbc.username: USERNAME
+cas.authn.attributeRepository.jdbc.healthQuery: SELECT 1 FROM INFORMATION_SCHEMA.SYSTEM_USERS
+cas.authn.attributeRepository.jdbc.isolateInternalQueries: false
+cas.authn.attributeRepository.jdbc.url: ${db.url}
+cas.authn.attributeRepository.jdbc.failFast: true
+cas.authn.attributeRepository.jdbc.isolationLevelName: ISOLATION_READ_COMMITTED
+cas.authn.attributeRepository.jdbc.dialect: ${db.dialect}
+cas.authn.attributeRepository.jdbc.leakThreshold: 10
+cas.authn.attributeRepository.jdbc.propagationBehaviorName: PROPAGATION_REQUIRED
+cas.authn.attributeRepository.jdbc.batchSize: 1
+cas.authn.attributeRepository.jdbc.user: ${db.user}
+cas.authn.attributeRepository.jdbc.ddlAuto: create-drop
+cas.authn.attributeRepository.jdbc.password: ${db.password}
+cas.authn.attributeRepository.jdbc.autocommit: false
+cas.authn.attributeRepository.jdbc.driverClass: ${db.driverClass}
+cas.authn.attributeRepository.jdbc.idleTimeout: 5000
+cas.authn.attributeRepository.jdbc.pool.suspension: false
+cas.authn.attributeRepository.jdbc.pool.minSize: 6
+cas.authn.attributeRepository.jdbc.pool.maxSize: 18
+cas.authn.attributeRepository.jdbc.pool.maxWait: 2000
+
+
+cas.authn.jdbc.query[0].sql: SELECT password FROM USER WHERE username=?
+cas.authn.jdbc.query[0].healthQuery: SELECT 1 FROM INFORMATION_SCHEMA.SYSTEM_USERS
+cas.authn.jdbc.query[0].isolateInternalQueries: false
+cas.authn.jdbc.query[0].url: ${db.url}
+cas.authn.jdbc.query[0].failFast: true
+cas.authn.jdbc.query[0].isolationLevelName: ISOLATION_READ_COMMITTED
+cas.authn.jdbc.query[0].dialect: ${db.dialect}
+cas.authn.jdbc.query[0].leakThreshold: 10
+cas.authn.jdbc.query[0].propagationBehaviorName: PROPAGATION_REQUIRED
+cas.authn.jdbc.query[0].batchSize: 1
+cas.authn.jdbc.query[0].user: ${db.user}
+cas.authn.jdbc.query[0].password: ${db.password}
+cas.authn.jdbc.query[0].ddlAuto: create-drop
+cas.authn.jdbc.query[0].maxAgeDays: 180
+cas.authn.jdbc.query[0].autocommit: false
+cas.authn.jdbc.query[0].driverClass: ${db.driverClass}
+cas.authn.jdbc.query[0].idleTimeout: 5000
+cas.authn.jdbc.query[0].credentialCriteria:
+
+cas.authn.jdbc.query[0].passwordEncoder.type: BCRYPT
+cas.authn.jdbc.query[0].passwordEncoder.characterEncoding:
+cas.authn.jdbc.query[0].passwordEncoder.encodingAlgorithm: BCRYPT
+cas.authn.jdbc.query[0].passwordEncoder.secret:
+cas.authn.jdbc.query[0].passwordEncoder.strength: 16
+
+cas.authn.jdbc.query[0].principalTransformation.suffix:
+cas.authn.jdbc.query[0].principalTransformation.caseConversion: NONE
+cas.authn.jdbc.query[0].principalTransformation.prefix:
+
+#CAS AUTH OAUTH2
+cas.authn.oauth.refreshToken.timeToKillInSeconds: 2592000
+
+cas.authn.oauth.code.timeToKillInSeconds: 30
+cas.authn.oauth.code.numberOfUses: 1
+
+cas.authn.oauth.accessToken.timeToKillInSeconds: 7200
+cas.authn.oauth.accessToken.maxTimeToLiveInSeconds: 28800
+
+#CAS LANGUAGE
+cas.locale.paramName: locale
+cas.locale.defaultValue: vi
+
+#DATABASE SERVICE REGISTRY
+cas.serviceRegistry.jpa.healthQuery: SELECT 1 FROM INFORMATION_SCHEMA.SYSTEM_USERS
+cas.serviceRegistry.jpa.isolateInternalQueries: false
+cas.serviceRegistry.jpa.url: ${db.url}
+cas.serviceRegistry.jpa.failFast: true
+cas.serviceRegistry.jpa.dialect: ${db.dialect}
+cas.serviceRegistry.jpa.leakThreshold: 10
+cas.serviceRegistry.jpa.batchSize: 1
+cas.serviceRegistry.jpa.defaultCatalog:
+cas.serviceRegistry.jpa.defaultSchema:
+cas.serviceRegistry.jpa.user: ${db.user}
+cas.serviceRegistry.jpa.ddlAuto: create-drop
+cas.serviceRegistry.jpa.password: ${db.password}
+cas.serviceRegistry.jpa.autocommit: false
+cas.serviceRegistry.jpa.driverClass: ${db.driverClass}
+cas.serviceRegistry.jpa.idleTimeout: 5000
+
+cas.serviceRegistry.jpa.pool.suspension: false
+cas.serviceRegistry.jpa.pool.minSize: 6
+cas.serviceRegistry.jpa.pool.maxSize: 18
+cas.serviceRegistry.jpa.pool.maxWait: 2000
+
+#TCKET REGISTRY CLEANER
+cas.ticket.registry.cleaner.appId: cas-ticket-registry-cleaner
+cas.ticket.registry.cleaner.startDelay: 10000
+cas.ticket.registry.cleaner.repeatInterval: 60000
+cas.ticket.registry.cleaner.enabled: true
+
+#JPA Ticket Registry
+# cas.ticket.registry.jpa.jpaLockingTimeout: 3600
+# cas.ticket.registry.jpa.healthQuery: SELECT 1 FROM INFORMATION_SCHEMA.SYSTEM_USERS
+# cas.ticket.registry.jpa.isolateInternalQueries: false
+# cas.ticket.registry.jpa.url: ${db.url}
+# cas.ticket.registry.jpa.failFast: true
+# cas.ticket.registry.jpa.dialect: ${db.dialect}
+# cas.ticket.registry.jpa.leakThreshold: 10
+# cas.ticket.registry.jpa.jpaLockingTgtEnabled: true
+# cas.ticket.registry.jpa.batchSize: 1
+# cas.ticket.registry.jpa.defaultCatalog:
+# cas.ticket.registry.jpa.defaultSchema:
+# cas.ticket.registry.jpa.user: ${db.user}
+# cas.ticket.registry.jpa.ddlAuto: create-drop
+# cas.ticket.registry.jpa.password: ${db.password}
+# cas.ticket.registry.jpa.autocommit: false
+# cas.ticket.registry.jpa.driverClass: ${db.driverClass}
+# cas.ticket.registry.jpa.idleTimeout: 5000
+
+# cas.ticket.registry.jpa.pool.suspension: false
+# cas.ticket.registry.jpa.pool.minSize: 6
+# cas.ticket.registry.jpa.pool.maxSize: 18
+# cas.ticket.registry.jpa.pool.maxWait: 2000
+
+# cas.ticket.registry.jpa.crypto.signing.key:
+# cas.ticket.registry.jpa.crypto.signing.keySize: 512
+# cas.ticket.registry.jpa.crypto.encryption.key:
+# cas.ticket.registry.jpa.crypto.encryption.keySize: 16
+# cas.ticket.registry.jpa.crypto.alg: AES
+
+
+#PASSWORD MANAGEMENT
+# cas.authn.pm.enabled: true
+
+# Minimum 8 and Maximum 10 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character
+# cas.authn.pm.policyPattern: ^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,10}
+
+# cas.authn.pm.reset.text: Reset your password with this link: %s
+# cas.authn.pm.reset.subject: Password Reset Request
+# cas.authn.pm.reset.from:
+# cas.authn.pm.reset.expirationMinutes: 1
+# cas.authn.pm.reset.emailAttribute: mail
+# cas.authn.pm.reset.securityQuestionsAttributes.attrQuestion1: attrAnswer1
+# cas.authn.pm.reset.securityQuestionsAttributes.attrQuestion2: attrAnswer2
+# cas.authn.pm.reset.securityQuestionsAttributes.attrQuestion3: attrAnswer3
+
+# Used to sign/encrypt the password-reset link
+# cas.authn.pm.reset.security.encryptionKey:
+# cas.authn.pm.reset.security.signingKey:
+
+# spring.mail.host:
+# spring.mail.port:
+# spring.mail.username:
+# spring.mail.password:
+# spring.mail.testConnection: true
+# spring.mail.properties.mail.smtp.auth: true
+# spring.mail.properties.mail.smtp.starttls.enable: true
+
+#Maxmind GeoTracking
+cas.maxmind.cityDatabase: file:/etc/cas/maxmind/GeoLite2-City.mmdb
+cas.maxmind.countryDatabase: file:/etc/cas/maxmind/GeoLite2-Country.mmdb
+
